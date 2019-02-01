@@ -1,0 +1,22 @@
+
+/* File: plat_drv-overlay.dts */
+/dts-v1/;
+/plugin/;
+/ {
+     compatible = "brcm,bcm2835", "brcm,bcm2836", "brcm,bcm2708", "brcm,bcm2709";
+  
+ fragment@0 {
+target-path = "/"; /* New device put at base path */
+ __overlay__ {
+ mydevt: mydevt { /* devtree label:instance name */
+ compatible = "mydevt"; /* Label to match in driver */
+ /* Configure gpio module */
+/* <ressource pinno dir> */
+gpios = <&gpio 12 0>, <&gpio 21 1>; /* 55|in 57|out */
+ /* Custom Property */
+mydevt-custom = <0x12345678>; /* 32-bit value */
+ status = "okay"; /* Device is enabled */
+ };
+ };
+};
+};
